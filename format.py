@@ -9,7 +9,7 @@ def parse_file():
     text = f.read()
     array_read = text.split("\n")
     #truncate the entire file to empty it 
-    f.truncate()
+    f.truncate(0)
     write_array = []
     for element in array_read:
         if len(element) <= default_character_length:
