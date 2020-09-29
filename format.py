@@ -3,6 +3,7 @@ import argparse
 import sys
 import os.path
 file_location = None
+default_character_length = 80
 def parse_file():
     f = open(file_location, "r+")
     text = f.read()
@@ -11,7 +12,7 @@ def parse_file():
     f.truncate()
     write_array = []
     for element in array_read:
-        if len(element) <= 80:
+        if len(element) <= default_character_length:
             write_array.append(element)
         else:
             i = 0
@@ -26,8 +27,10 @@ def parse_file():
     f.write("\n".join(write_array))
 parser = argparse.ArgumentParser()
 parser.add_argument("-location", dest = 'location', type = str, help  = "enter the path of the file from the location of this python file make sure it's a txt file")
+parser.add_argument("--characters", dest = 'characters', type = int, default = 80, help = "enter the number of characters per lne default will be set to 80")
 args = parser.parse_args()
 file_location = args.location
+default_character_length = args.characters
 if file_location == None:
     print("enter an argument type -h at the end for help")
     sys.exit()
