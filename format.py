@@ -14,8 +14,15 @@ def parse_file():
         if len(element) <= 80:
             write_array.append(element)
         else:
-            for i in range(0, len(element), 80):
-                write_array.append(element[i:i+80])
+            i = 0
+            while i+80 <= len(element)-1:
+                temp = i+80
+                while element[temp] != " ":
+                    temp-=1
+                write_array.append(element[i: temp])
+                i = temp
+            if i != len(element)-1:
+                write_array.append(element[i: len(element)])
     f.write("\n".join(write_array))
 parser = argparse.ArgumentParser()
 parser.add_argument("-location", dest = 'location', type = str, help  = "enter the path of the file from the location of this python file make sure it's a txt file")
