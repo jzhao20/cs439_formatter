@@ -21,8 +21,8 @@ def parse_file():
                 while element[temp] != " ":
                     temp-=1
                 write_array.append(element[i: temp])
-                i = temp
-            if i != len(element)-1:
+                i = temp+1
+            if i < len(element)-1:
                 write_array.append(element[i: len(element)])
     f.write("\n".join(write_array))
 parser = argparse.ArgumentParser()
